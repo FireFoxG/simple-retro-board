@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "cc1d7806-8b17-4cd0-bb19-958cca5bdd77",
+		"name": "retro board",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add point",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/retro/add?message=a&type=negative",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"retro",
+						"add"
+					],
+					"query": [
+						{
+							"key": "message",
+							"value": "a"
+						},
+						{
+							"key": "type",
+							"value": "negative"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/retro/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"retro",
+						"list"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "positive",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List positive",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/retro/list?type=positive",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"retro",
+						"list"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "positive"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vote up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/retro/voteup?id=1&username=Tester",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"retro",
+						"voteup"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "username",
+							"value": "Tester"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vote down",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/retro/votedown?id=1&username=Tester",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"retro",
+						"votedown"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "username",
+							"value": "Tester"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
