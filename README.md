@@ -13,11 +13,11 @@ Things to-do:
 
  Clone project into local repo, make sure java JDK and maven are installed
 
- `npm i`
+ `npm i
  
- `mvn clean install`
+ mvn clean install
  
- `npm run-script start`
+ npm run-script start`
 
  Server should be running, hopefully!
 
