@@ -3,6 +3,8 @@ package com.wcms.retroboard.retroboard;
 import com.wcms.retroboard.retroboard.entity.GroupOfPoints;
 import com.wcms.retroboard.retroboard.entity.GroupType;
 import com.wcms.retroboard.retroboard.entity.Point;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 
 import static com.wcms.retroboard.retroboard.RetroBoardApplication.groupOfPointsList;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/retro")
 public class RetroBoardRequestController {
