@@ -2,6 +2,14 @@
 $(function () {
     RetroBoard.Init();
 });
+/**
+ * So,
+ *
+ * Host (Scrum master) should be able to start a "Retro session". During the session, users are able to post sads and glads and vote.
+ * At the end of session, host "wraps up" the session, saving information and making it accessible in the future (for retrospective retrospective i guess)
+ *
+ *
+ */
 var RetroBoard;
 (function (RetroBoard) {
     var QUERY_URL = 'http://127.0.0.1:8080';
@@ -16,7 +24,9 @@ var RetroBoard;
             console.error(err);
         });
     };
-    // Will be refined at some point 
+    var toggleClass = function (el, className) {
+        el.hasClass(className) ? el.removeClass(className) : el.addClass(className);
+    };
     var updateAllEntries = function () {
         getRetroListData(renderRetroList);
     };
@@ -76,8 +86,15 @@ var RetroBoard;
     };
     RetroBoard.Init = function () {
         console.log('Init RetroBoard');
-        getRetroListData(renderRetroList);
-        console.log($('.fa-thumbs-up'));
+        updateAllEntries();
+        $('.col-button-add').click(function (e) {
+            toggleClass($(e.target).parent().find('.input-wrapper'), 'expanded');
+        });
+        $('.fas.fa-share').click(function (e) {
+            var input = $(e.target).parent().find('input');
+            console.log('Submitted:', input.val(), 'for', input.attr('for'));
+            input.val('');
+        });
     };
 })(RetroBoard || (RetroBoard = {}));
 //# sourceMappingURL=RetroBoard.js.map

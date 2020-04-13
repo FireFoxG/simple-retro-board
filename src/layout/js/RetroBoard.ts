@@ -3,14 +3,25 @@ $( () => {
     RetroBoard.Init()
 })
 
+/**
+ * So,
+ * 
+ * Host (Scrum master) should be able to start a "Retro session". During the session, users are able to post sads and glads and vote. 
+ * At the end of session, host "wraps up" the session, saving information and making it accessible in the future (for retrospective retrospective i guess)
+ * 
+ * 
+ */
+
 
 module RetroBoard {
-    const QUERY_URL = 'http://127.0.0.1:8080'
+    const QUERY_URL = 'http://127.0.0.1:8080';
+
+
+
+
 
     // todo: add id to every retro meeting to keep track of history and fetch particular retros
-
     const getRetroListData = (callback) => { 
-
         $.ajax(QUERY_URL + '/retro/list', {
             type: 'GET',
             timeout: 1000,
@@ -21,7 +32,11 @@ module RetroBoard {
         })
     } 
 
-    // Will be refined at some point 
+    const toggleClass = (el, className) => {
+        el.hasClass(className) ? el.removeClass(className) : el.addClass(className)
+        
+    }
+
 
     const updateAllEntries = () => {
         getRetroListData(renderRetroList);
@@ -94,9 +109,18 @@ module RetroBoard {
 
     export const Init = () => {
         console.log('Init RetroBoard')
-        getRetroListData(renderRetroList)
-        console.log($('.fa-thumbs-up'))
+        updateAllEntries();
         
+        $('.col-button-add').click(e => {
+                toggleClass($(e.target).parent().find('.input-wrapper'), 'expanded')
+        })
+
+        $('.fas.fa-share').click(e => {
+            let input = $(e.target).parent().find('input');
+            console.log('Submitted:', input.val(), 'for', input.attr('for'));
+            input.val('');
+        })
+            
 
     }
 
