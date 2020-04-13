@@ -16,6 +16,7 @@ var RetroBoard;
             console.error(err);
         });
     };
+    // Will be refined at some point 
     var updateAllEntries = function () {
         getRetroListData(renderRetroList);
     };

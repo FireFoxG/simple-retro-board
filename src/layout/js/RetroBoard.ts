@@ -21,7 +21,7 @@ module RetroBoard {
         })
     } 
 
-    // Will be refined at some point
+    // Will be refined at some point 
 
     const updateAllEntries = () => {
         getRetroListData(renderRetroList);
