@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/FireFoxG/simple-retro-board#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@types/jquery": "^3.3.34",
     "moment": "^2.24.0"
   }
 }

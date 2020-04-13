@@ -4,22 +4,74 @@
     <meta charset="UTF-8">
     <link rel="stylesheet/less" type="text/css" href="./css/styles.less" />
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-    <script src="js/core.js" type="text/javascript"></script>
+    <script src="js/RetroBoard.js" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="../../node_modules\@fortawesome\fontawesome-free\css\all.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    
+
+
+
+
     <nav>
-        <h1>Retro</h1>
+        <div class="content">
+            <h1>Retro (Playing around)</h1>
+            <!-- <i class="fas fa-thumbs-up"></i>
+            <i class="far fa-thumbs-up"></i> -->
+
+
+        </div>
     </nav>
 
     <main>
-        <div class="depth">Test</div>
+        <div id="board" class="board">
+            <div class="col col-sad">
+                <h2>Sad <i class="far fa-frown"></i>
 
-        <button id="test" class="depth">Test requests</button>
+                </h2>
+                <button class="depth col-button-add" data-js-col-button><i class="fas fa-cross"></i>
+
+
+
+                </button>
+                <div class="input-wrapper">
+                    <input id="inputSad" class="depth-input" for="col-sad">
+                    <i class="fas fa-share"></i>
+
+
+                </div>
+                <ul>
+                    <!-- Dynamically generated content -->
+                </ul>
+            </div>
+            <div class="col col-glad">
+                <h2>Glad <i class="far fa-grin-beam"></i>
+
+                </h2>
+                <button class="depth col-button-add" data-js-col-button><i class="fas fa-cross"></i>
+
+
+
+                </button>
+                <div class="input-wrapper">
+                    <input id="inputGlad" class="depth-input" for="col-glad">
+                    <i class="fas fa-share"></i>
+
+
+                </div>
+                <ul>
+                    <!-- Dynamically generated content -->
+                </ul>
+            </div>
+        </div>
+
     </main>
+
+
+    <button id="test" class="depth">Test requests</button>
 
 
     <script>less = { env: 'development'};</script>
