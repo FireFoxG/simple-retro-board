@@ -30,7 +30,7 @@ public class RetroBoardApplication {
 	public static void main(String[] args) {
 
 		groupOfPointsList.addAll(Arrays.asList(new GroupOfPoints(1L, GroupType.POSITIVE, Arrays.asList(new Point(1L,"positive point 1"), new Point(2L, "positive point 2"))),
-				new GroupOfPoints(1L, GroupType.NEGATIVE, Arrays.asList(new Point(1L,"Negative point")))));
+				new GroupOfPoints(3L, GroupType.NEGATIVE, Arrays.asList(new Point(3L,"Negative point 1"), new Point(4L,"Negative point 2")))));
 
 		SpringApplication.run(RetroBoardApplication.class, args);
 	}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet/less" type="text/css" href="./css/styles.less" />
@@ -7,75 +8,89 @@
     <script src="js/RetroBoard.js" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="../../node_modules\@fortawesome\fontawesome-free\css\all.css" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Saira&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 
+    <div class="nav">
+        <div class="title">
+            <h3 class="h-wcms">WCMS</h3>
+            <h1 class="h-retro">RETRO</h1>
+        </div>
+    </div>
+    <div class="page">
 
 
 
-    <nav>
-        <div class="content">
-            <h1>Retro (Playing around)</h1>
-            <!-- <i class="fas fa-thumbs-up"></i>
-            <i class="far fa-thumbs-up"></i> -->
-
+        <div class="sidebar">
+            <button class="side-button">Test 1</button>
 
         </div>
-    </nav>
 
-    <main>
-        <div id="board" class="board">
-            <div class="col col-sad">
-                <h2>Sad <i class="far fa-frown"></i>
+        <main>
+            <div class="sorting-wrapper">
+                Sort by: <a class="fake-link" id="sortName">Name</a> <a class="fake-link" id="sortNewest">Newest</a> <a
+                    class="fake-link" id="sortVotes">Votes</a>
 
-                </h2>
-                <button class="depth col-button-add" data-js-col-button>Add
-
-
-
-                </button>
-                <div class="input-wrapper">
-                    <input id="inputSad" class="depth-input" for="col-sad">
-                    <i class="fas fa-share"></i>
-
-
-                </div>
-                <ul>
-                    <!-- Dynamically generated content -->
-                </ul>
             </div>
-            <div class="col col-glad">
-                <h2>Glad <i class="far fa-grin-beam"></i>
-
-                </h2>
-                <button class="depth col-button-add" data-js-col-button>Add
+            <div id="board" class="board">
 
 
 
-                </button>
-                <div class="input-wrapper">
-                    <input id="inputGlad" class="depth-input" for="col-glad">
-                    <i class="fas fa-share"></i>
+                <div class="col col-sad">
+                    <h2>Sad <i class="far fa-frown"></i>
+
+                    </h2>
+                    <button class="depth col-button-add" data-js-col-button>Add
 
 
+
+                    </button>
+                    <div class="input-wrapper">
+                        <input id="inputSad" class="depth-input" placeholder="{INSERT_NAME} did it again!"
+                            for="col-sad">
+                        <i class="fas fa-share"></i>
+
+
+                    </div>
+                    <ul>
+                        <!-- Dynamically generated content -->
+                    </ul>
                 </div>
-                <ul>
-                    <!-- Dynamically generated content -->
-                </ul>
-            </div>
-        </div>
+                <div class="col col-glad">
+                    <h2>Glad <i class="far fa-grin-beam"></i>
 
-    </main>
+                    </h2>
+                    <button class="depth col-button-add" data-js-col-button>Add
+
+
+
+                    </button>
+                    <div class="input-wrapper">
+                        <input id="inputGlad" class="depth-input" placeholder="Write something good :[" for="col-glad">
+                        <i class="fas fa-share"></i>
+
+
+                    </div>
+                    <ul>
+                        <!-- Dynamically generated content -->
+                    </ul>
+                </div>
+            </div>
+
+        </main>
+    </div>
 
 
     <!-- <button id="test" class="depth">Test requests</button> -->
 
 
-    <script>less = { env: 'development'};</script>
+    <script>less = { env: 'development' };</script>
     <script src="js/external/less.min.js"></script>
     <script>less.watch();</script>
 </body>
+
 </html>
