@@ -1,299 +1,446 @@
-
 @import url(https://fonts.googleapis.com/css?family=Monoton);
 @import url(https://fonts.googleapis.com/css?family=Mr+Dafoe);
 
 @bg-main: rgb(211, 211, 211);
+@bg-dark: rgb(32, 32, 32);
 
-body, html {
+body,
+html {
     background-color: @bg-main;
     font-family: "Roboto", sans-serif;
     padding: 0;
     margin: 0;
+    height: 100%;
+    overflow: hidden;
+
+    &.dark {
+        background-color: @bg-dark;
+
+        .col-button-add {
+            background-color: @bg-dark  !important;
+            .neumorph-inside-dark() !important;
+        }
+
+        color: white;
+
+        button {
+            color: white;
+        }
+
+        .fake-link {
+            color: white;
+            
+            &:hover {
+                .neumorph-dark();
+            }
+        }
+
+        .sidebar {
+            button {
+                background-color: @bg-dark;
+                .neumorph-dark();
+
+            }
+            .darkmode .switch {
+                .neumorph-inside-dark();
+                border-radius: 45px;
+
+                
+                
+
+            }
+        }
+
+        .depth {
+            background-color: @bg-dark;
+
+        }
+
+       
+
+
+        .board .col {
+
+            // .neumorph-inside-dark();
+
+
+
+            ul li {
+                .neumorph-dark();
+            }
+
+        }
+
+
+        .wrapper {
+            .neumorph-inside-dark();
+           
+
+        }
+
+
+
+    }
 }
 
-.sorting-wrapper {
-    padding-left: 2rem;
-    .fake-link { 
-        text-decoration: underline;
-        color: rgb(0, 0, 0);
-        cursor: pointer;
-        padding: 8px 12px;
 
+
+    .sorting-wrapper {
+        padding-left: 2rem;
+
+        .fake-link {
+            text-decoration: underline;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            padding: 8px 12px;
+            background-color: rgba(0,0,0,0);
+
+            transition: 0.2s;
+            outline: none;
+            background-color: none;
+            border: none;
+            box-shadow: none;
+            &:hover {
+                .neumorph();
+                transition: 0.2s;
+            }
+        }
+
+
+    }
+
+
+    .nav {
+        padding: 0;
+        margin: 0;
+        z-index: 0;
+        background-color: rgb(10, 10, 10);
+        height: 120px;
+        box-shadow: 8px 4px 8px black, -8px 4px 8px black;
+
+        .h-wcms {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-top: -5px;
+            font-family: 'Mr Dafoe', cursive;
+            font-size: 4rem;
+            color: #EB219B;
+            -webkit-text-fill-color: rgba(253, 90, 250, 1);
+            text-shadow: -2px -2px 0 #FFBAF2;
+            -webkit-filter: drop-shadow(3px 3px 1px #441F62);
+            -webkit-transform: skew(-5deg, -5deg);
+            font-weight: normal;
+            z-index: 2;
+            text-align: center;
+
+
+        }
+
+        .h-retro {
+            position: relative;
+            font-family: 'Monoton', cursive;
+            font-size: 4rem;
+            line-height: 1;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+
+            background-image: -webkit-linear-gradient(#022486 0%, #0AD0FD 30%, #BDFCFC 40%, #D8FFFF 44%, #00081C 44%, #00081C 50%, #074A67 52%, #1CD8FE 60%, #7FEDFE 62%, #96F5FC 70%, #0FD8FA 73%, #0BD2FD 88%, #AFFDFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px #fff;
+        }
+
+        .h-retro {
+            font-weight: 100;
+        }
+
+    }
+
+
+    .page {
+        display: flex;
+    }
+
+    .sidebar {
+        margin-top: 64px;
+        width: auto;
+        min-width: 200px;
+
+        // overflow: hidden;
+        margin-left: 24px;
+        position: relative;
+        padding: 0px;
+        margin-right: 24px;
+
+        .wrapper {
+            .neumorph-inside();
+            height: 100%;
+            padding: 24px 0;
+
+        }
+
+        button {
+            background-color: @bg-main;
+            width: 80%;
+            display: flex;
+            margin: 0 auto;
+            padding: 8px;
+            text-align: center;
+
+            // transform: translateX(15%);
+            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.13),
+                0px -8px 8px rgba(228, 228, 228, 0.705);
+            border-radius: 4px;
+
+        }
+
+        .users {}
+
+
+        .darkmode {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 30px;
+            text-align: center;
+
+            .switch {
+                .neumorph();
+
+                &.active {
+                    .neumorph-inside();
+                    border-radius: 45px;
+                }
+
+                width: 40%;
+                margin: 10px auto;
+                font-size: 1.2rem;
+                height: 30px;
+                padding-bottom: 30px;
+
+                span {
+                    width: 100%;
+                }
+
+                border-radius: 45px;
+
+            }
+        }
+
+    }
+
+
+
+    button,
+    input {
+        outline: none;
+        background-color: none;
+        border: none;
         transition: 0.2s;
 
-        &:hover {
-            .neumorph();
+        &:hover,
+        &:not(input) {
+            box-shadow: 4px 4px 16px rgba(0, 0, 0, 0),
+                -4px -4px 16px rgba(255, 255, 255, 0),
+                inset 2px 2px 4px rgba(0, 0, 0, 0.171),
+                inset -2px -2px 4px rgba(255, 255, 255, 0.322);
             transition: 0.2s;
         }
     }
-    
-    
-}
 
+    .neumorph-inside() {
+        border-radius: 6px;
+        // background-color: @bg-main;
+        box-shadow: 4px 4px 16px rgba(0, 0, 0, 0),
+            -4px -4px 16px rgba(255, 255, 255, 0),
+            inset 2px 2px 4px rgba(0, 0, 0, 0.171),
+            inset -2px -2px 4px rgba(255, 255, 255, 0.322);
 
-.nav {
-    padding: 0;
-    margin: 0;
-    z-index: 00;
-    background-color: rgb(31, 31, 31);
-    height: 120px;
-    
-  .h-wcms {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-top: -5px;
-    font-family: 'Mr Dafoe', cursive;
-    font-size: 4rem;
-    color: #EB219B;
-    -webkit-text-fill-color: rgba(253, 90, 250, 1);
-    text-shadow: -2px -2px 0 #FFBAF2;
-    -webkit-filter: drop-shadow(3px 3px 1px #441F62);
-    -webkit-transform: skew(-5deg,-5deg);
-    font-weight: normal;
-    z-index: 2;
-    text-align: center;
-    
-
-  }
-  
-  .h-retro {
-    position: relative;
-    font-family: 'Monoton', cursive;
-    font-size: 4rem;
-    line-height: 1;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 50px;
-
-    background-image: -webkit-linear-gradient(#022486 0%, #0AD0FD 30%, #BDFCFC 40%, #D8FFFF 44%, #00081C 44%, #00081C 50%, #074A67 52%, #1CD8FE 60%, #7FEDFE 62%, #96F5FC 70%, #0FD8FA 73%, #0BD2FD 88%, #AFFDFF 100%); 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 1px #fff;
-  }
-  
-  .h-retro {
-    font-weight: 100;
-  }
-  
-
-
-}
-
-
-  
-
-.page {
-    display: flex;
-}
-
-.sidebar {
-   margin-top: 64px;
-    width: auto;
-    min-width: 150px;
-    .neumorph-inside();
-    overflow: hidden;
-    margin-left: 24px;
-    padding: 12px;
-    margin-right: 24px;
-    button {
-        background-color: @bg-main;
-        width: 80%;
-        display: flex;
-        margin: 0 auto;
-        padding: 8px;
-        text-align: center;
-
-        // transform: translateX(15%);
-        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.13),
-        0px -8px 8px rgba(228, 228, 228, 0.705);
-        border-radius: 4px;
-      
     }
-}
 
+    .neumorph-inside-dark() {
+        border-radius: 6px;
+        // background-color: @bg-main;
+        box-shadow: 4px 4px 16px rgba(0, 0, 0, 0),
+            -4px -4px 16px rgba(255, 255, 255, 0),
+            inset 2px 2px 4px rgba(17, 17, 17, 0.932),
+            inset -2px -2px 4px rgba(206, 206, 206, 0.11);
 
-
-button, input {
-    outline: none;
-    background-color: none;
-    border: none;
-    transition: 0.2s;
-    
-    &:hover, &:not(input) {
-        box-shadow: 4px 4px 16px rgba(0, 0, 0, 0), 
-                    -4px -4px 16px rgba(255, 255, 255, 0),
-                    inset 2px 2px 4px rgba(0, 0, 0, 0.171), 
-                    inset -2px -2px 4px rgba(255, 255, 255, 0.322);
-        transition: 0.2s;
     }
-}
 
-.neumorph-inside() {
-    border-radius: 6px;
-    background-color: @bg-main;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0), 
-                    -4px -4px 16px rgba(255, 255, 255, 0),
-                    inset 2px 2px 4px rgba(0, 0, 0, 0.171), 
-                    inset -2px -2px 4px rgba(255, 255, 255, 0.322);
-                
-}
+    .neumorph() {
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.271),
+            -3px -3px 6px rgba(255, 255, 255, 0.637),
+            inset 2px 2px 4px rgba(44, 33, 33, 0),
+            inset -2px -2px 4px rgba(255, 255, 255, 0);
 
-.neumorph() {
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.271), 
-    -3px -3px 6px rgba(255, 255, 255, 0.637),
-    inset 2px 2px 4px rgba(44, 33, 33, 0), 
-    inset -2px -2px 4px rgba(255, 255, 255, 0);
-    
-    border-radius: 6px;
-    background-color: @bg-main;
-}
+        border-radius: 6px;
 
-.shadow() {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.884);
-}
+    }
+
+    .neumorph-dark() {
+        box-shadow: 3px 3px 8px rgba(252, 252, 252, 0.068),
+            -3px -3px 6px rgba(0, 0, 0, 0.568),
+            inset 2px 2px 4px rgba(44, 33, 33, 0),
+            inset -2px -2px 4px rgba(255, 255, 255, 0.034);
+
+        border-radius: 6px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.082);
+        border-right: 1px solid rgba(255, 255, 255, 0.082);
+
+    }
+
+    .shadow() {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.884);
+    }
 
 
-main {
-    max-width: 1200px;
-    
-    width: 100%;
-    margin: 2rem auto;
-    height: 100%;
-    padding: 2rem 0rem;
-    // .neumorph-inside();
+    main {
+        max-width: 1200px;
 
-    .board {
-        display: flex;
-        flex-direction: row;
         width: 100%;
-        .col {
-            max-width: 50%;
+        margin: 2rem auto;
+        height: 100%;
+        padding: 2rem 0rem;
+        // .neumorph-inside();
+
+        .board {
+            display: flex;
+            flex-direction: row;
             width: 100%;
-            padding: 0 2rem;
-            margin: 1rem;
-            .neumorph-inside();
 
-
-            h2 {
-                text-align: center;
-                .shadow();
-                font-size: 1.9rem;
-            }
-
-            &.col-glad {
-                h2 {
-                    color: rgb(45, 196, 45);
-                }
-            }
-            &.col-sad {
-                h2 {
-                    color: rgb(218, 29, 29);
-                    
-                }
-            }
-
-            .col-button-add {
-                min-width: 100%;
+            .col {
+                max-width: 50%;
                 width: 100%;
-                font-size: 1.3rem;
-                text-transform: lowercase;
-                font-variant: small-caps;
-                line-height: 15px;
-            }
+                padding: 0 2rem;
+                margin: 1rem;
+                // .neumorph-inside();
 
-            .input-wrapper {
-                min-width: 100%;
-                width: 100%;
-                position: relative;
-                overflow: hidden;
-                height: 0px;
-                opacity: 0;
 
-                transition: 0.1s;
-
-                &.expanded {
-                    height: 100px;
-                    opacity: 1;
-                    transition: 0.1s;
+                h2 {
+                    text-align: center;
+                    .shadow();
+                    font-size: 1.9rem;
                 }
 
-                i {
-                    position: absolute;
-                    top: 35%;
-                    color: #000;
-                    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.363);
-                    font-size: 2.3rem;
-                    right: 1rem;
-                    transition: 0.1s;
-                    cursor: pointer;
-
-                    &:hover {
-                        text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.466);
-                        transform: scale(1.05);
-                        transition: 0.1s;
+                &.col-glad {
+                    h2 {
+                        color: rgb(45, 196, 45);
                     }
                 }
-                
-                .depth-input {
-                    
-                    .neumorph-inside();
-                    
-                    height: 50px;
-                    background-color: rgb(219, 219, 219);
-                    margin: 20px 0;
-                    padding: .5rem 1rem;
-                    max-width: 100% !important;
-                    width: calc(100% - 2rem);
-                    text-align: center;
 
+                &.col-sad {
+                    h2 {
+                        color: rgb(218, 29, 29);
+
+                    }
                 }
-            }
 
-            
+                .col-button-add {
+                    background-color: @bg-main;
+                    .neumorph-inside();
+                    min-width: 100%;
+                    width: 100%;
+                    font-size: 1.3rem;
+                    text-transform: lowercase;
+                    font-variant: small-caps;
+                    line-height: 15px;
+                }
 
-            ul {
-                list-style: none;
-                padding: 0 0 2rem;
-                li {
-                    text-align: center;
-                    
-                    margin-top: 1rem;
-                    // width: 100%;
-                    padding: 1rem 0;
-                    .neumorph();
+                .input-wrapper {
+                    min-width: 100%;
+                    width: 100%;
                     position: relative;
+                    overflow: hidden;
+                    height: 0px;
+                    opacity: 0;
 
-                    padding: 0.5rem 3rem 0.5rem 0.5rem;
-                    line-height: 24px;
+                    transition: 0.1s;
+
+                    &.expanded {
+                        height: 100px;
+                        opacity: 1;
+                        transition: 0.1s;
+                    }
 
                     i {
                         position: absolute;
-                        right: 15px;
-                        height: 100%;
-                        font-size: 1.5rem;
+                        top: 35%;
+                        color: #000;
+                        text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.363);
+                        font-size: 2.3rem;
+                        right: 1rem;
+                        transition: 0.1s;
                         cursor: pointer;
-                        
+
+                        &:hover {
+                            text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.466);
+                            transform: scale(1.05);
+                            transition: 0.1s;
+                        }
+                    }
+
+                    .depth-input {
+
+                        .neumorph-inside();
+
+                        height: 50px;
+                        background-color: rgb(219, 219, 219);
+                        margin: 20px 0;
+                        padding: .5rem 1rem;
+                        max-width: 100% !important;
+                        width: calc(100% - 2rem);
+                        text-align: center;
+
                     }
                 }
-                
+
+
+
+                ul {
+                    list-style: none;
+                    padding: 0 0 2rem;
+
+                    li {
+                        text-align: center;
+
+                        margin-top: 1rem;
+                        // width: 100%;
+                        padding: 1rem 0;
+                        .neumorph();
+                        position: relative;
+
+                        padding: 0.5rem 3rem 0.5rem 0.5rem;
+                        line-height: 24px;
+
+                        i {
+                            position: absolute;
+                            right: 15px;
+                            height: 100%;
+                            font-size: 1.5rem;
+                            cursor: pointer;
+
+                        }
+                    }
+
+                }
+
             }
+
 
         }
 
-        
+
+
     }
-    
 
 
-}
+    .depth {
+        .neumorph();
+        width: auto;
+        padding: 1rem 2rem;
+        max-width: fit-content;
 
-
-.depth {
-    .neumorph();
-    width: auto;
-    padding: 1rem 2rem;
-    max-width: fit-content;
-
-}
-
+    }

@@ -9,10 +9,39 @@ $(function () {
  * At the end of session, host "wraps up" the session, saving information and making it accessible in the future (for retrospective retrospective i guess)
  *
  *
+ *
+ * TODO:
+ * - Add message
+ * - Start Session (DB connection)
+ * - authenticate and display authenticated
+ *
+ *
  */
 var RetroBoard;
 (function (RetroBoard) {
     var QUERY_URL = 'http://127.0.0.1:8080';
+    var initDarkMode = function () {
+        var el = $('#darkModeSwitch');
+        if (localStorage.getItem('darkMode') == 'true') {
+            !$('body').hasClass('dark') ? $('body').addClass('dark') : null;
+        }
+        el.click(function (e) {
+            el.toggleClass('active');
+            toggleDarkMode();
+        });
+        localStorage.getItem('darkMode') == 'true' ? el.find('span').text('ON') : el.find('span').text('OFF');
+    };
+    var toggleDarkMode = function () {
+        var el = $('#darkModeSwitch');
+        $('body').toggleClass('dark');
+        if (localStorage.getItem('darkMode') == 'false') {
+            localStorage.setItem('darkMode', 'true');
+        }
+        else {
+            localStorage.setItem('darkMode', 'false');
+        }
+        localStorage.getItem('darkMode') == 'true' ? el.find('span').text('ON') : el.find('span').text('OFF');
+    };
     var initSortingButtons = function () {
         $('#sortNewest').click(function (e) {
             getRetroListData(sortEntries, 'sortNewest');
@@ -47,14 +76,6 @@ var RetroBoard;
     };
     /**
      *
-     * @param el - $EL
-     * @param className - ClassName
-     */
-    var toggleClass = function (el, className) {
-        el.hasClass(className) ? el.removeClass(className) : el.addClass(className);
-    };
-    /**
-     *
      * @param mes - Message
      * @param col - Which column (sad, glad)
      */
@@ -66,7 +87,6 @@ var RetroBoard;
         var sadArray = [];
         var GLAD = data[0];
         var SAD = data[1];
-        // console.log('REFERENCE', GLAD.pointList)
         if (type == 'sortName') {
             $('#' + type).toggleClass('active');
             $('#sortVotes').removeClass('active');
@@ -154,7 +174,7 @@ var RetroBoard;
     };
     var initAddButtons = function () {
         $('.col-button-add').click(function (e) {
-            toggleClass($(e.target).parent().find('.input-wrapper'), 'expanded');
+            $(e.target).parent().find('.input-wrapper').toggleClass('expanded');
         });
     };
     var initLikeButton = function () {
@@ -169,6 +189,7 @@ var RetroBoard;
         initSortingButtons();
         initAddButtons();
         initLikeButton();
+        initDarkMode();
         updateAllEntries();
     };
 })(RetroBoard || (RetroBoard = {}));

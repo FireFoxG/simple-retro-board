@@ -1,5 +1,6 @@
 "use strict";
 $( () => {
+    
     RetroBoard.Init()
 })
 
@@ -10,12 +11,45 @@ $( () => {
  * At the end of session, host "wraps up" the session, saving information and making it accessible in the future (for retrospective retrospective i guess)
  * 
  * 
+ * 
+ * TODO: 
+ * - Add message
+ * - Start Session (DB connection)
+ * - authenticate and display authenticated
+ * 
+ * 
  */
 
 
-module RetroBoard {
+module RetroBoard { 
     const QUERY_URL = 'http://127.0.0.1:8080';
+  
+    const initDarkMode = () => {
+        let el = $('#darkModeSwitch');
+        if (localStorage.getItem('darkMode') == 'true') {
+            !$('body').hasClass('dark') ? $('body').addClass('dark') : null;
+        }
+        el.click( e=> {
+            el.toggleClass('active');
+            toggleDarkMode();
+        });    
+        localStorage.getItem('darkMode') == 'true' ? el.find('span').text('ON') : el.find('span').text('OFF'); 
+    }
 
+
+    const toggleDarkMode = () => {
+        let el = $('#darkModeSwitch');
+
+        $('body').toggleClass('dark');
+        if (localStorage.getItem('darkMode') == 'false') {
+            localStorage.setItem('darkMode', 'true')
+        } else {
+            localStorage.setItem('darkMode', 'false')
+
+        }
+        localStorage.getItem('darkMode') == 'true' ? el.find('span').text('ON') : el.find('span').text('OFF');
+
+    }
 
 
     const initSortingButtons = () => {
@@ -56,16 +90,6 @@ module RetroBoard {
 
     /**
      * 
-     * @param el - $EL
-     * @param className - ClassName
-     */
-    const toggleClass = (el, className) => {
-        el.hasClass(className) ? el.removeClass(className) : el.addClass(className)
-        
-    }
-
-    /**
-     * 
      * @param mes - Message
      * @param col - Which column (sad, glad)
      */
@@ -78,7 +102,6 @@ module RetroBoard {
         let sadArray = [];
         let GLAD =  data[0];
         let SAD =  data[1];
-        // console.log('REFERENCE', GLAD.pointList)
 
         if (type == 'sortName') {
             $('#'+type).toggleClass('active');
@@ -189,7 +212,7 @@ module RetroBoard {
 
     const initAddButtons = () => {
         $('.col-button-add').click(e => {
-            toggleClass($(e.target).parent().find('.input-wrapper'), 'expanded')
+           $(e.target).parent().find('.input-wrapper').toggleClass('expanded');
     })
     }
 
@@ -201,16 +224,18 @@ module RetroBoard {
         })
     }
 
+    
+
 
     export const Init = () => {
         console.log('Init RetroBoard')
         initSortingButtons();
         initAddButtons();
         initLikeButton();
+        initDarkMode();
         updateAllEntries();
 
         
-            
 
     }
 

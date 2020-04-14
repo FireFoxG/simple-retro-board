@@ -4,16 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet/less" type="text/css" href="./css/styles.less" />
+
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
     <script src="js/RetroBoard.js" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="../../node_modules\@fortawesome\fontawesome-free\css\all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Saira&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
 </head>
 
-<body>
+<body id="body">
 
     <div class="nav">
         <div class="title">
@@ -24,16 +27,31 @@
     <div class="page">
 
 
-
+        
         <div class="sidebar">
-            <button class="side-button">Test 1</button>
+            <div class="wrapper">
 
+            
+            <div class="menu-buttons">
+                <button class="side-button">Test 1</button>
+
+            </div>
+
+            <div class="users">
+
+            </div>
+
+            <div class="darkmode">Dark mode <button id="darkModeSwitch" class="switch"><span>OFF</span></button></div>
+
+        </div>
         </div>
 
         <main>
             <div class="sorting-wrapper">
-                Sort by: <a class="fake-link" id="sortName">Name</a> <a class="fake-link" id="sortNewest">Newest</a> <a
-                    class="fake-link" id="sortVotes">Votes</a>
+                Sort by: 
+                <button class="fake-link" id="sortName">Name</button> 
+                <button class="fake-link" id="sortNewest">Newest</button>
+                <button class="fake-link" id="sortVotes">Votes</button>
 
             </div>
             <div id="board" class="board">
