@@ -1,0 +1,14 @@
+{
+  "compileOnSave": true,
+
+    "compilerOptions": {
+      "strict": false,
+      "module": "CommonJS",
+      "lib": ["DOM"],
+      "watch" : true,
+      "baseUrl": ".",
+    "paths": {
+      "*": ["*", "generated/*"]
+    }
+    }
+  }
