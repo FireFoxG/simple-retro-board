@@ -52,7 +52,9 @@ public class RetroBoardRequestController {
     @RequestMapping(path = "/list",
             method = RequestMethod.GET,
             produces = "application/json")
-    List<GroupOfPoints> list(@RequestParam(required = false) String type) {
+    List<GroupOfPoints> list(@RequestParam(required = false) String type, @RequestParam(required = false) String sessionId) {
+        System.out.println("DEBUGGER:" + groupOfPointsList);
+
         if(type != null) {
             GroupType groupType = GroupType.fromString(type);
             if(groupType == null) {
@@ -62,6 +64,12 @@ public class RetroBoardRequestController {
                 return groupOfPointsList.stream().filter(groupOfPoints -> groupOfPoints.getType().equals(groupType)).collect(Collectors.toList());
             }
         }
+        if(sessionId != null) {
+            //throw error
+            System.out.println("DEBUGGER:" + sessionId);
+            return groupOfPointsList.stream().filter(groupOfPoints -> groupOfPoints.getSessionId().equals(sessionId)).collect(Collectors.toList());
+        }
+        
         return groupOfPointsList;
     }
 

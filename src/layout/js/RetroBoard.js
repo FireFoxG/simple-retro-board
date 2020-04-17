@@ -126,14 +126,14 @@ function initDarkMode() {
 }
 
 
-function addNewMessage() {
+function addNewMessage(colId, message, type) {
+    console.log('Recieved', e)
 
-    $.ajax(QUERY_URL + `/retro/add?groupId=3&message=weirdflexbutok&type=positive`, {
+    $.ajax(QUERY_URL + `/retro/add?groupId=${colId}&message=${'message'}&type=${type}`, {
         type: 'POST',
         timeout: 1000,
     }).done((data) => {
-        console.log(data)
-
+        console.log('ADDED NEW MESSAGE TO', type, ':', data)
 
 
     }).fail((err) => {
@@ -201,62 +201,87 @@ function getRetroListData(callback, params) {
 
 }
 
+function renderParticularSession(sessionId) {
+    console.log('Getting particular session', sessionId)
+    $.ajax(QUERY_URL + '/retro/list?sessionId='+sessionId, {
+        type: 'GET',
+    }).done((data) => {
+        console.log('All entries from /list/'+sessionId, data)
+        let newData = {
+            POSITIVE: {},
+            NEGATIVE: {}
+        };
+
+        data.map( e => {
+            if (e.type == 'POSITIVE') {
+                newData.POSITIVE['pointList'] = e.pointList
+                newData.POSITIVE['id'] = e.id
+                newData.POSITIVE['sessionId'] = e.sessionId
+            } else {
+                newData.NEGATIVE['pointList'] = e.pointList
+                newData.NEGATIVE['id'] = e.id
+                newData.NEGATIVE['sessionId'] = e.sessionId
+            }
+        })
+        renderRetroList(newData);
+
+    }).fail((err) => {
+        console.error(err)
+    })
+}
+
 
 function sortEntries(data, type) {
 
-    let gladArray = [];
-    let sadArray = [];
-    let GLAD = data[0];
-    let SAD = data[1];
+    console.log('FUNCTION SORT DISABLED')
+
+    // let gladArray = [];
+    // let sadArray = [];
+    // let GLAD = data[0];
+    // let SAD = data[1];
     
-    if (type == 'sortName') {
-        $('#' + type).toggleClass('active');
-        $('#sortVotes').removeClass('active');
-        $('#sortNewest').removeClass('active');
+    // if (type == 'sortName') {
+    //     $('#' + type).toggleClass('active');
+    //     $('#sortVotes').removeClass('active');
+    //     $('#sortNewest').removeClass('active');
 
-        if ($('#' + type).hasClass('active')) {
-            gladArray = GLAD.pointList.sort();
-            sadArray = SAD.pointList.sort();
-            GLAD.pointList = gladArray;
-            SAD.pointList = sadArray;
+    //     if ($('#' + type).hasClass('active')) {
+    //         gladArray = GLAD.pointList.sort();
+    //         sadArray = SAD.pointList.sort();
+    //         GLAD.pointList = gladArray;
+    //         SAD.pointList = sadArray;
 
-        } else {
-            gladArray = GLAD.pointList.sort();
-            sadArray = SAD.pointList.sort();
+    //     } else {
+    //         gladArray = GLAD.pointList.sort();
+    //         sadArray = SAD.pointList.sort();
 
-            gladArray = gladArray.reverse();
-            sadArray = sadArray.reverse();
+    //         gladArray = gladArray.reverse();
+    //         sadArray = sadArray.reverse();
 
-            GLAD.pointList = gladArray;
-            SAD.pointList = sadArray;
+    //         GLAD.pointList = gladArray;
+    //         SAD.pointList = sadArray;
 
-        }
+    //     }
 
-    } else if (type == 'votes') {
-        // TODO: Make more sorting algorithms for these things
-    }
-
-
-    renderRetroList(data);
+    // } else if (type == 'votes') {
+    //     // TODO: Make more sorting algorithms for these things
+    // }
 
 
-}
+    // renderRetroList(data);
 
-/**
- * Just updated user's list with current server data
- */
-function updateAllEntries() {
-    getRetroListData(renderRetroList, null);
 
 }
+
 
 function renderRetroList(data) {
     $('.col-glad').find('ul li').remove();
     $('.col-sad').find('ul li').remove();
 
+console.log('GOT DATA', data)
 
-    let GLAD = data[0];
-    let SAD = data[1];
+    let GLAD = data.POSITIVE;
+    let SAD = data.NEGATIVE;
 
 
 
@@ -323,13 +348,9 @@ function handleUpvote(e) {
 }
 
 
-function submitNewSession(sessionName) {
-
-}
 
 
-
-function makeObjectsOfSessions(data) {
+function makeArrayOfSessions(data) {
     let sessions = {};
     data.map( col => {
         const pointList = col.pointList;
@@ -345,21 +366,76 @@ function makeObjectsOfSessions(data) {
 
             
         } else {
-            console.log('Pusing', pointList, 'into', sessionId, colType)
+            console.log('Pushing', pointList, 'into', sessionId, colType)
             sessions[sessionId][colType].push(pointList)
         }
 
     })
+
+
     console.log('Returning', sessions)
-    return sessions
+
     
+    renderSessionsToSessionPage(sessions);
+    return sessions
+
+}
+
+function show($el) {
+    $el.removeClass('hidden');
+}
+
+function hide($el) {
+    $el.addClass('hidden');
+}
+
+/**
+ * 
+ * @param {string} siteName 
+ * @param {function} callback 
+ * @param {params} callbackParams 
+ */
+function redirectTo(siteName, callback, callbackParams) {
+    
+    hide($('.site'));
+    show($('.'+siteName));
+    callback(callbackParams);
+}
+
+
+
+function renderSessionsToSessionPage(sessions) {
+    $('.session-list').html('')
+    for (session in sessions) {
+        $('.session-list').append('<button class="session-button">'+ session.toString() +'</button>').click( e => {
+            let sessionId = $(e.target).text();
+            console.log('Current retro:', sessionId)
+            CURRENT_RETRO_SESSION = sessionId;
+            localStorage.setItem('CURRENT_RETRO_SESSION', sessionId)
+            
+
+            redirectTo('board', renderParticularSession, sessionId);
+
+            // Render new session from here
+
+
+        })
+
+
+    }
+
+  
 }
 
 function makeSessionsList() {
-    getRetroListData(makeObjectsOfSessions)
+    let sessions = getRetroListData(makeArrayOfSessions)
 }
 
+function newSession(sessionId) {
+    console.log('New session:', sessionId)
 
+
+}
 
 function initInputs(e) {
     $('.col-button-add').click(e => {
@@ -367,19 +443,41 @@ function initInputs(e) {
     })
 
     $('#newSession').click(e=>{
-        console.log('click')
         $(e.target).parent().find('.input-wrapper').toggleClass('expanded');
     })
+
+    $('.depth-input .fas.fa-share').click(e => {
+        
+    })
+
+    console.log($("#input-session-name").parent().find('.fa-share'))
+
+    $("#input-session-name").parent().find('.fa-share').click( e => {
+        e.preventDefault;
+        let sessionId = $(e.target).parent().find('input').val();
+        newSession(sessionId)
+        $(e.target).parent().find('input').val('')
+    })
+
+
+
+    $("#input-session-name").parent().on('submit', e => {
+        e.preventDefault;
+        let sessionId = $(e.target).find('input').val();
+        newSession(sessionId)
+        $(e.target).find('input').val('')
+    })
+
+    $("#viewAllSessions").click(e=> {
+        redirectTo('session-selection-site', makeSessionsList, null);
+    })
+    
+    $('#sessionName').text('Current session: '+localStorage.getItem('CURRENT_RETRO_SESSION'));
+   
+
 }
 
-function initLikeButton() {
-    $('.fas.fa-share').click(e => {
-        let input = $(e.target).parent().find('input');
-        console.log('Submitted:', input.val(), 'for', input.attr('for'));
-        input.val('');
-    })
-    // TODO: Save if user has voted for point, so that likes are persistently shown
-}
+
 
 
 function Init() {
@@ -390,10 +488,16 @@ function Init() {
     initFirebase();
     initSortingButtons();
     initInputs();
-    initLikeButton();
     initDarkMode();
-    updateAllEntries();
+    // updateAllEntries();
 
-    makeSessionsList();
+    let current = localStorage.getItem('CURRENT_RETRO_SESSION');
+    if (current && current.length > 0) {
+        redirectTo('board', renderParticularSession, current)
+    } else {
+        makeSessionsList();
+    }
+
+
 
 }

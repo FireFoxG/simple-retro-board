@@ -12,6 +12,7 @@ button {
     font-size: 1rem;
 
     text-align: center;
+
     &:hover {
         .neumorph-inside();
     }
@@ -29,6 +30,15 @@ html {
     &.dark {
         background-color: @bg-dark;
 
+        .submit-new-message {
+            .neumorph-dark();
+
+            &:active {
+                .neumorph-inside-dark();
+            }
+
+        }
+
         .col-button-add {
             background-color: @bg-dark  !important;
             .neumorph-inside-dark() !important;
@@ -42,7 +52,8 @@ html {
             text-align: center;
             font-size: 1rem;
 
-          text-align: center;
+            text-align: center;
+
             &:hover {
                 .neumorph-inside-dark();
             }
@@ -50,7 +61,7 @@ html {
 
         .fake-link {
             color: white;
-            
+
             &:hover {
                 .neumorph-dark();
             }
@@ -64,22 +75,31 @@ html {
                 i {
                     color: #fff;
                 }
+
+                input {
+                    .neumorph();
+
+                    &:active {
+                        .neumorph();
+                    }
+                }
             }
 
 
-           
+
 
             button {
                 .neumorph-dark();
-                
+
 
                 &:hover {
                     .neumorph-inside-dark();
                     transition: 0.2s;
                 }
 
-               
+
             }
+
             .darkmode .switch {
                 .neumorph-inside-dark();
                 border-radius: 45px;
@@ -90,449 +110,518 @@ html {
             background-color: @bg-dark;
 
         }
+
         .board .col {
             ul li {
                 .neumorph-dark();
             }
         }
+
         .wrapper {
             .neumorph-inside-dark();
-        
+
+        }
+
+        .session-selection-site {
+            ul {
+                button {
+                    .neumorph-dark();
+
+                    &:hover {
+                        .neumorph-inside-dark();
+
+                    }
+                }
+            }
         }
     }
 }
+
 #logout-notice {
     text-align: center;
     margin-top: 10%;
     padding: 200px 20px;
 }
 
+#sessionName {
+    font-weight: 100;
+}
 
-    .sorting-wrapper {
-        padding-left: 2rem;
+.divider {
+    height: 24px;
+}
 
-        .fake-link {
-            text-decoration: underline;
-            color: rgb(0, 0, 0);
-            cursor: pointer;
-            padding: 8px 12px;
-            background-color: rgba(0,0,0,0);
+.sorting-wrapper {
+    // padding-left: 2rem;
+    padding: 0 10%;
 
-            transition: 0.2s;
-            outline: none;
-            background-color: none;
-            border: none;
-            box-shadow: none;
-            &:hover {
-                .neumorph();
-                transition: 0.2s;
-            }
-        }
-
-
-    }
-
-
-    .nav {
+    h2 {
+        // display: inline;
         padding: 0;
         margin: 0;
-        z-index: 0;
-        background-color: @bg-dark;
-        height: 120px;
-        box-shadow: 8px 4px 3px @bg-dark, -8px 4px 3px @bg-dark;
-        position: relative;
-
-        .h-wcms {
-            position: absolute;
-            left: 0;
-            right: 0;
-            margin-top: -5px;
-            font-family: 'Mr Dafoe', cursive;
-            font-size: 4rem;
-            color: #EB219B;
-            -webkit-text-fill-color: rgba(253, 90, 250, 1);
-            text-shadow: -2px -2px 0 #FFBAF2;
-            -webkit-filter: drop-shadow(3px 3px 1px #441F62);
-            -webkit-transform: skew(-5deg, -5deg);
-            font-weight: normal;
-            z-index: 2;
-            text-align: center;
-
-
-        }
-
-        .h-retro {
-            position: relative;
-            font-family: 'Monoton', cursive;
-            font-size: 4rem;
-            line-height: 1;
-            margin: 0 auto;
-            text-align: center;
-            padding-top: 50px;
-
-            background-image: -webkit-linear-gradient(#022486 0%, #0AD0FD 30%, #BDFCFC 40%, #D8FFFF 44%, #00081C 44%, #00081C 50%, #074A67 52%, #1CD8FE 60%, #7FEDFE 62%, #96F5FC 70%, #0FD8FA 73%, #0BD2FD 88%, #AFFDFF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            -webkit-text-stroke: 1px #fff;
-        }
-
-        .h-retro {
-            font-weight: 100;
-        }
+        font-size: 1rem;
+        font-weight: 100;
 
     }
 
-
-    .page {
+    .fake-link {
+        background-color: @bg-main;
+        width: 100%;
+        // margin: 24px 0px;
         display: flex;
-        height: 75%;
-    }
-
-    .sidebar {
-        margin-top: 64px;
-        width: auto;
-        min-width: 250px;
-        margin-left: 24px;
-        position: relative;
-        padding: 0px;
-        margin-right: 24px;
-
-        .wrapper {
-            .neumorph-inside();
-            height: 100%;
-            padding: 24px 0;
-
-            .input-wrapper {
-                input {
-                    height: auto;
-                    padding: 0.7rem 1rem;
-                    width: 50%;
-                    margin: 1rem 2rem;
-                    display: flex;
-                }
-                i {
-                    position: absolute;
-                    top: 20%;
-                    color: #000;
-                    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.363);
-                    font-size: 1.8rem;
-                    right: 1.4rem;
-                    transition: 0.2s;
-                    cursor: pointer;
-                    // width: 5%;
-        
-                    &:hover {
-                        text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.466);
-                        transform: scale(1.05);
-                        transition: 0.2s;
-                    }
-                }
-                    
-                
-            }
-
-        }
-
-        button {
-            background-color: @bg-main;
-            width: 80%;
-            display: flex;
-            margin: 0 auto;
-            text-align: center;
-            outline: none;
-            padding: .5rem 1rem;
-            justify-content: center;
-            transition: 0.2s;
-
-            .neumorph();
-
-            &:hover {
-                .neumorph-inside();
-            transition: 0.2s;
-            }
-
-        }
-
-
-        .darkmode {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 30px;
-            text-align: center;
-
-            .switch {
-                .neumorph();
-
-                &.active {
-                    .neumorph-inside();
-                    border-radius: 45px;
-                }
-
-                width: 40%;
-                margin: 10px auto;
-                font-size: 1.2rem;
-                height: 30px;
-                padding-bottom: 30px;
-
-                span {
-                    width: 100%;
-                }
-
-                border-radius: 45px;
-
-            }
-        }
-
-    }
-
-
-
-
-    input {
+        margin: 12px 0;
+        text-align: center;
         outline: none;
-        background-color: none;
-        border: none;
+        padding: .5rem 1rem;
+        justify-content: center;
         transition: 0.2s;
 
-        &:hover,
-        &:not(input) {
-            box-shadow: 4px 4px 16px rgba(0, 0, 0, 0),
-                -4px -4px 16px rgba(255, 255, 255, 0),
-                inset 2px 2px 4px rgba(0, 0, 0, 0.171),
-                inset -2px -2px 4px rgba(255, 255, 255, 0.322);
+        .neumorph();
+
+        &:hover {
+            .neumorph-inside();
             transition: 0.2s;
         }
     }
 
-    .neumorph-inside() {
-        border-radius: 6px;
+
+}
+
+
+.nav {
+    padding: 0;
+    margin: 0;
+    z-index: 0;
+    background-color: @bg-dark;
+    height: 120px;
+    box-shadow: 8px 4px 3px @bg-dark, -8px 4px 3px @bg-dark;
+    position: relative;
+
+    .h-wcms {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-top: -5px;
+        font-family: 'Mr Dafoe', cursive;
+        font-size: 4rem;
+        color: #EB219B;
+        -webkit-text-fill-color: rgba(253, 90, 250, 1);
+        text-shadow: -2px -2px 0 #FFBAF2;
+        -webkit-filter: drop-shadow(3px 3px 1px #441F62);
+        -webkit-transform: skew(-5deg, -5deg);
+        font-weight: normal;
+        z-index: 2;
+        text-align: center;
+
+
+    }
+
+    .h-retro {
+        position: relative;
+        font-family: 'Monoton', cursive;
+        font-size: 4rem;
+        line-height: 1;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 50px;
+
+        background-image: -webkit-linear-gradient(#022486 0%, #0AD0FD 30%, #BDFCFC 40%, #D8FFFF 44%, #00081C 44%, #00081C 50%, #074A67 52%, #1CD8FE 60%, #7FEDFE 62%, #96F5FC 70%, #0FD8FA 73%, #0BD2FD 88%, #AFFDFF 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 1px #fff;
+    }
+
+    .h-retro {
+        font-weight: 100;
+    }
+
+}
+
+
+.page {
+    display: flex;
+    height: 75%;
+}
+
+.sidebar {
+    // margin-top: 64px;
+    width: auto;
+    min-width: 250px;
+    margin-left: 24px;
+    position: relative;
+    padding: 0px;
+    margin-right: 24px;
+
+
+
+    .wrapper {
+        .neumorph-inside();
+        height: 100%;
+        padding: 24px 0;
+
+        .side-button {
+            margin-top: 12px;
+        }
+
+        .session-button {
+            margin-top: 12px;
+        }
+
+        .input-wrapper {
+            input {
+                height: auto;
+                padding: 0.7rem 1rem;
+                width: 50%;
+                margin: 1rem 2rem;
+                display: flex;
+                .neumorph();
+            }
+
+            i {
+                position: absolute;
+                top: 27%;
+                color: #000;
+                text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.363);
+                font-size: 1.8rem;
+                right: 1.4rem;
+                transition: 0.2s;
+                cursor: pointer;
+                // width: 5%;
+
+                &:hover {
+                    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.466);
+                    transform: scale(1.05);
+                    transition: 0.2s;
+                }
+            }
+
+
+
+        }
+
+    }
+
+    button {
         background-color: @bg-main;
+        width: 80%;
+        display: flex;
+        margin: 0 auto;
+        text-align: center;
+        outline: none;
+        padding: .5rem 1rem;
+        justify-content: center;
+        transition: 0.2s;
+
+        .neumorph();
+
+        &:hover {
+            .neumorph-inside();
+            transition: 0.2s;
+        }
+
+    }
+
+
+    .darkmode {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 30px;
+        text-align: center;
+
+        .switch {
+            .neumorph();
+
+            &.active {
+                .neumorph-inside();
+                border-radius: 45px;
+            }
+
+            width: 40%;
+            margin: 10px auto;
+            font-size: 1.2rem;
+            height: 30px;
+            padding-bottom: 30px;
+
+            span {
+                width: 100%;
+            }
+
+            border-radius: 45px;
+
+        }
+    }
+
+}
+
+
+
+
+input {
+    outline: none;
+    background-color: none;
+    border: none;
+    transition: 0.2s;
+
+    &:hover,
+    &:not(input) {
         box-shadow: 4px 4px 16px rgba(0, 0, 0, 0),
             -4px -4px 16px rgba(255, 255, 255, 0),
             inset 2px 2px 4px rgba(0, 0, 0, 0.171),
             inset -2px -2px 4px rgba(255, 255, 255, 0.322);
-
+        transition: 0.2s;
     }
-    .neumorph() {
-        background-color: @bg-main;
-        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.271),
-            -3px -3px 6px rgba(255, 255, 255, 0.637),
-            inset 2px 2px 4px rgba(44, 33, 33, 0),
-            inset -2px -2px 4px rgba(255, 255, 255, 0);
-        border-radius: 6px;
+}
 
-    }
+.neumorph-inside() {
+    border-radius: 6px;
+    background-color: @bg-main;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0),
+        -4px -4px 16px rgba(255, 255, 255, 0),
+        inset 2px 2px 4px rgba(0, 0, 0, 0.171),
+        inset -2px -2px 4px rgba(255, 255, 255, 0.322);
 
-    .neumorph-inside-dark() {
-        border-radius: 6px;
-        background-color: @bg-dark;
-        box-shadow: 4px 4px 16px rgba(0, 0, 0, 0),
-            -4px -4px 16px rgba(255, 255, 255, 0),
-            inset 2px 2px 4px rgba(17, 17, 17, 0.932),
-            inset -2px -2px 4px rgba(206, 206, 206, 0.11);
-    }
+}
 
-    
+.neumorph() {
+    background-color: @bg-main;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.271),
+        -3px -3px 6px rgba(255, 255, 255, 0.637),
+        inset 2px 2px 4px rgba(44, 33, 33, 0),
+        inset -2px -2px 4px rgba(255, 255, 255, 0);
+    border-radius: 6px;
 
-    .neumorph-dark() {
-        background-color: @bg-dark;
+}
 
-        box-shadow: 3px 3px 8px rgba(252, 252, 252, 0.164),
-            -3px -3px 6px rgba(0, 0, 0, 0.568),
-            inset 2px 2px 4px rgba(44, 33, 33, 0),
-            inset -2px -2px 4px rgba(255, 255, 255, 0.034);
-        border-radius: 6px;
-    }
-
-    .shadow() {
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.884);
-    }
+.neumorph-inside-dark() {
+    border-radius: 6px;
+    background-color: @bg-dark;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0),
+        -4px -4px 16px rgba(255, 255, 255, 0),
+        inset 2px 2px 4px rgba(17, 17, 17, 0.932),
+        inset -2px -2px 4px rgba(206, 206, 206, 0.11);
+}
 
 
-    main {
-        max-width: 1200px;
 
+.neumorph-dark() {
+    background-color: @bg-dark;
+
+    box-shadow: 3px 3px 8px rgba(252, 252, 252, 0.164),
+        -3px -3px 6px rgba(0, 0, 0, 0.568),
+        inset 2px 2px 4px rgba(44, 33, 33, 0),
+        inset -2px -2px 4px rgba(255, 255, 255, 0.034);
+    border-radius: 6px;
+}
+
+.shadow() {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.884);
+}
+
+
+main {
+    max-width: 1200px;
+
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    padding: 2rem 0rem;
+    // .neumorph-inside();
+
+    .board {
+        display: flex;
+        flex-direction: row;
         width: 100%;
-        margin: 2rem auto;
-        height: 100%;
-        padding: 2rem 0rem;
-        // .neumorph-inside();
 
-        .board {
-            display: flex;
-            flex-direction: row;
+        .col {
+            max-width: 50%;
             width: 100%;
-
-            .col {
-                max-width: 50%;
-                width: 100%;
-                padding: 0 2rem;
-                margin: 1rem;
-                // .neumorph-inside();
+            padding: 0 2rem;
+            margin: 1rem;
+            // .neumorph-inside();
 
 
+            h2 {
+                text-align: center;
+                .shadow();
+                font-size: 1.9rem;
+            }
+
+            &.col-glad {
                 h2 {
+                    color: rgb(45, 196, 45);
+                }
+            }
+
+            &.col-sad {
+                h2 {
+                    color: rgb(218, 29, 29);
+
+                }
+            }
+
+            .col-button-add {
+                background-color: @bg-main;
+                .neumorph-inside();
+                min-width: 100%;
+                width: 100%;
+                font-size: 1.3rem;
+                text-transform: lowercase;
+                font-variant: small-caps;
+                line-height: 15px;
+            }
+
+
+
+
+
+            ul {
+                list-style: none;
+                padding: 0 0 2rem;
+
+                li {
                     text-align: center;
-                    .shadow();
-                    font-size: 1.9rem;
-                }
 
-                &.col-glad {
-                    h2 {
-                        color: rgb(45, 196, 45);
+                    margin-top: 1rem;
+                    // width: 100%;
+                    padding: 1rem 0;
+                    .neumorph();
+                    position: relative;
+
+                    padding: 0.5rem 3rem 0.5rem 0.5rem;
+                    line-height: 24px;
+
+                    i {
+                        position: absolute;
+                        right: 15px;
+                        height: 100%;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+
                     }
-                }
-
-                &.col-sad {
-                    h2 {
-                        color: rgb(218, 29, 29);
-
-                    }
-                }
-
-                .col-button-add {
-                    background-color: @bg-main;
-                    .neumorph-inside();
-                    min-width: 100%;
-                    width: 100%;
-                    font-size: 1.3rem;
-                    text-transform: lowercase;
-                    font-variant: small-caps;
-                    line-height: 15px;
-                }
-
-                
-
-
-
-                ul {
-                    list-style: none;
-                    padding: 0 0 2rem;
-
-                    li {
-                        text-align: center;
-
-                        margin-top: 1rem;
-                        // width: 100%;
-                        padding: 1rem 0;
-                        .neumorph();
-                        position: relative;
-
-                        padding: 0.5rem 3rem 0.5rem 0.5rem;
-                        line-height: 24px;
-
-                        i {
-                            position: absolute;
-                            right: 15px;
-                            height: 100%;
-                            font-size: 1.5rem;
-                            cursor: pointer;
-
-                        }
-                    }
-
                 }
 
             }
 
-
         }
-
 
 
     }
 
-    #login {
-        position: absolute;
-        right: 48px;
-        top: 35%;
-        padding: 1rem 2rem;
-        background-color: @bg-dark;
+
+
+}
+
+#login {
+    position: absolute;
+    right: 48px;
+    top: 35%;
+    padding: 1rem 2rem;
+    background-color: @bg-dark;
+    .neumorph-dark();
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.3rem;
+    transition: 0.2s;
+
+    &:hover {
         .neumorph-dark();
-        color: white;
-        font-family: "Roboto", sans-serif;
-        font-size: 1.3rem;
         transition: 0.2s;
-        &:hover {
-            .neumorph-dark();
-            transition: 0.2s;
-        }
+    }
+}
+
+#logout {
+    position: absolute;
+    right: 48px;
+    top: 35%;
+    padding: 1rem 2rem;
+    background-color: @bg-dark;
+    .neumorph-dark();
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.3rem;
+    transition: 0.2s;
+
+    &:hover {
+        .neumorph-inside-dark();
+        transition: 0.2s;
+    }
+}
+
+.depth {
+    .neumorph();
+    width: auto;
+    padding: 1rem 2rem;
+    max-width: fit-content;
+
+}
+
+.hidden {
+    display: none;
+}
+
+.input-wrapper {
+    min-width: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 0px;
+    opacity: 0;
+
+    transition: 0.2s;
+
+    &.expanded {
+        height: auto;
+        opacity: 1;
+        transition: 0.2s;
     }
 
-    #logout {
-        position: absolute;
-        right: 48px;
-        top: 35%;
-        padding: 1rem 2rem;
-        background-color: @bg-dark;
-        .neumorph-dark();
-        color: white;
-        font-family: "Roboto", sans-serif;
-        font-size: 1.3rem;
-        transition: 0.2s;
-        &:hover {
-            .neumorph-inside-dark();
-            transition: 0.2s;
-        }
+    textarea {
+        resize: vertical;
     }
 
-    .depth {
+    .submit-new-message {
         .neumorph();
-        width: auto;
-        padding: 1rem 2rem;
-        max-width: fit-content;
-
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .input-wrapper {
-        min-width: 100%;
         width: 100%;
-        position: relative;
-        overflow: hidden;
-        height: 0px;
-        opacity: 0;
-
+        height: 32px;
+        border: 2px solid rgb(36, 100, 173);
         transition: 0.2s;
+        margin-bottom: 24px;
 
-        &.expanded {
-            height: 100px;
-            opacity: 1;
+        &:hover {
+            border: 2px solid rgb(122, 144, 168);
             transition: 0.2s;
         }
 
-        i {
-            position: absolute;
-            top: 35%;
-            color: #000;
-            text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.363);
-            font-size: 2.3rem;
-            right: 1rem;
-            transition: 0.2s;
-            cursor: pointer;
+    }
 
-            &:hover {
-                text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.466);
-                transform: scale(1.05);
-                transition: 0.2s;
-            }
-        }
+    .depth-input {
 
-        .depth-input, .new-session-input {
+        .neumorph-inside();
 
-            .neumorph-inside();
+        height: auto;
+        min-height: 60px;
+        background-color: rgb(219, 219, 219);
+        margin: 20px 0 5px 0;
+        padding: .5rem 1rem;
+        max-width: 100% !important;
+        width: calc(100% - 2rem);
+        text-align: center;
 
-            height: 50px;
-            background-color: rgb(219, 219, 219);
-            margin: 20px 0;
-            padding: .5rem 1rem;
-            max-width: 100% !important;
-            width: calc(100% - 2rem);
-            text-align: center;
+    }
+}
 
+
+.session-selection-site {
+    h2 {
+        margin-top: 44px;
+        font-weight: normal;
+    }
+
+    ul {
+        button {
+            padding: 1rem 2rem;
+            .neumorph();
         }
     }
+}

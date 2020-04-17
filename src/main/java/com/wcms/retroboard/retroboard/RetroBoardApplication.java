@@ -31,12 +31,12 @@ public class RetroBoardApplication {
 
 		groupOfPointsList.addAll(Arrays.asList(
 			new GroupOfPoints(1L, GroupType.POSITIVE, Arrays.asList(
-				new Point(1L,"positive point 1", "retro#1"), 
-				new Point(2L, "positive point 2",  "retro#1"))
+				new Point(1L,"positive point 1", "retro1"), 
+				new Point(2L, "positive point 2",  "retro1")), "retro1"
 			),
 			new GroupOfPoints(3L, GroupType.NEGATIVE, Arrays.asList(
-				new Point(3L,"Negative point 1",  "retro#1"), 
-				new Point(4L,"Negative point 2",  "retro#1"))
+				new Point(3L,"Negative point 1",  "retro1"), 
+				new Point(4L,"Negative point 2",  "retro1")), "retro1"
 				)
 				)
 				);

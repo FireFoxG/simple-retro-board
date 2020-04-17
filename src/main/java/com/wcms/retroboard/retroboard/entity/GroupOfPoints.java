@@ -14,6 +14,9 @@ public class GroupOfPoints {
     private GroupType type;
 
     @JsonProperty
+    private String sessionId;
+
+    @JsonProperty
     private List<Point> pointList = new ArrayList<>();
 
     public GroupOfPoints(Long id, GroupType type) {
@@ -21,8 +24,9 @@ public class GroupOfPoints {
         this.type = type;
     }
 
-    public GroupOfPoints(Long id, GroupType type, List<Point> pointList) {
+    public GroupOfPoints(Long id, GroupType type, List<Point> pointList, String sessionId) {
         this.id = id;
+        this.sessionId = sessionId;
         this.type = type;
         this.pointList.addAll(pointList);
     }
@@ -33,6 +37,10 @@ public class GroupOfPoints {
 
     public GroupType getType() {
         return type;
+    }
+
+    public String getSessionId() {
+        return sessionId;
     }
 
     public List<Point> getPointList() {

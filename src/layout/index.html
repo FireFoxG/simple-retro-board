@@ -39,15 +39,28 @@
 
         
         <div class="sidebar">
+            <h2 id="sessionName">herro</h2>
+
             <div class="wrapper">
 
+
+                <div class="sorting-wrapper">
+                    Sort by: 
+                    <button class="fake-link" id="sortName">Name</button> 
+                    <button class="fake-link" id="sortNewest">Newest</button>
+                    <button class="fake-link" id="sortVotes">Votes</button>
+                </div>
+
+                <div class="divider"></div>
             
             <div class="menu-buttons">
                 <button class="side-button" id="newSession" data-js-session-selector>New session</button>
-                <div class="input-wrapper">
-                    <input id="input-session-name" class="new-session-input" placeholder="Retro #1">
+                <form class="input-wrapper" onsubmit="return false">
+                    <input id="input-session-name" class="new-session-input" placeholder="Enter retro name">
                     <i class="fas fa-share"></i>
-                </div>
+                </form>
+
+                <button class="side-button" id="viewAllSessions" data-js-session-selector>View all sessions</button>
 
             </div>
 
@@ -60,15 +73,11 @@
         </div>
         </div>
 
-        <main>
-            <div class="sorting-wrapper">
-                Sort by: 
-                <button class="fake-link" id="sortName">Name</button> 
-                <button class="fake-link" id="sortNewest">Newest</button>
-                <button class="fake-link" id="sortVotes">Votes</button>
-
-            </div>
+        <main class="site board hidden">
+            
             <div id="board" class="board">
+
+                
 
 
 
@@ -81,11 +90,12 @@
 
 
                     </button>
-                    <div class="input-wrapper">
-                        <input id="inputSad" class="depth-input" placeholder="{INSERT_NAME} did it again!"
-                            for="col-sad">
-                        <i class="fas fa-share"></i>
-                    </div>
+                    <form class="input-wrapper" onsubmit="return false">
+                        <textarea id="inputSad" type="text" class="depth-input" placeholder="{INSERT_NAME} did it again!" for="col-sad"></textarea>
+                        <!-- <i class="fas fa-share"></i> -->
+
+                        <button class="submit-new-message" for='sad'>Submit</button>
+                    </form>
                     <ul>
                         <!-- Dynamically generated content -->
                     </ul>
@@ -99,12 +109,12 @@
 
 
                     </button>
-                    <div class="input-wrapper">
-                        <input id="inputGlad" class="depth-input" placeholder="Write something good :[" for="col-glad">
-                        <i class="fas fa-share"></i>
+                    <form class="input-wrapper" onsubmit="return false">
+                        <textarea id="inputGlad" class="depth-input" placeholder="Write something good :[" for="col-glad" ></textarea>
+                        <!-- <i class="fas fa-share"></i> -->
 
 
-                    </div>
+                    </form>
                     <ul>
                         <!-- Dynamically generated content -->
                     </ul>
@@ -112,6 +122,16 @@
             </div>
 
         </main>
+
+        <div class="site session-selection-site">
+            <h2>Select a session to view</h2>
+            <div class="session-select-list">
+                <ul class="session-list">
+                    <!-- Dynamically generated content -->
+                </ul>
+            </div>
+        </div>
+
     </div>
 
 
