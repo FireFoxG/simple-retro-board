@@ -11,7 +11,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/retro/add?message=a&type=negative",
+					"raw": "localhost:8080/retro/add?message=a&type=negative&sessionId=retro1",
 					"host": [
 						"localhost"
 					],
@@ -28,6 +28,10 @@
 						{
 							"key": "type",
 							"value": "negative"
+						},
+						{
+							"key": "sessionId",
+							"value": "retro1"
 						}
 					]
 				}

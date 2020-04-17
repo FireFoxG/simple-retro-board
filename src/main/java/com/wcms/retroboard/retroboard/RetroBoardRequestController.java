@@ -27,14 +27,14 @@ public class RetroBoardRequestController {
     @RequestMapping(path = "/add",
             method = RequestMethod.POST,
             produces = "application/json")
-    Point add(@RequestParam(required = false) Long groupId, @RequestParam String message, @RequestParam String type) {
+    Point add(@RequestParam(required = false) Long groupId, @RequestParam String message, @RequestParam String type, @RequestParam String sessionId) {
 
         //TODO move this logic to DAO
         if(groupId != null) {
             Optional<GroupOfPoints> first = groupOfPointsList.stream().filter(groupOfPoints -> groupOfPoints.getId().equals(groupId)).findFirst();
             if(first.isPresent()) {
                 GroupOfPoints groupOfPoints = first.get();
-                Point point = new Point(random.nextLong(), message);
+                Point point = new Point(random.nextLong(), message, sessionId);
                 groupOfPoints.addPoint(point);
                 return point;
             } else {
@@ -42,7 +42,7 @@ public class RetroBoardRequestController {
             }
         } else {
             GroupOfPoints groupOfPoints = new GroupOfPoints(random.nextLong(), GroupType.fromString(type));
-            Point point = new Point(random.nextLong(), message);
+            Point point = new Point(random.nextLong(), message, sessionId);
             groupOfPoints.addPoint(point);
             groupOfPointsList.add(groupOfPoints);
             return point;

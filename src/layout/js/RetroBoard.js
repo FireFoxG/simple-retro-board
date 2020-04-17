@@ -21,7 +21,8 @@ $(document).ready(e => {
 
 
 const QUERY_URL = 'http://127.0.0.1:8080';
-
+const SESSION_BUTTON = "data-js-session-selector";
+let CURRENT_RETRO_SESSION = '';
 
 function initFirebase() {
 
@@ -98,7 +99,13 @@ function onlyWcmsPeopleInit() {
 }
 
 
+function initSessionButton() {
+    // [BACKEND] TODO: Make a DB to save sessions. Each session has points and their likes
 
+
+    const buttonHtml =`<button class="side-button" data-js-session-selector>${true}</button>`;
+
+}
 
 
 
@@ -134,6 +141,7 @@ function addNewMessage() {
     })
 
 }
+
 
 
 function toggleDarkMode() {
@@ -315,8 +323,51 @@ function handleUpvote(e) {
 }
 
 
-function initAddButtons(e) {
+function submitNewSession(sessionName) {
+
+}
+
+
+
+function makeObjectsOfSessions(data) {
+    let sessions = {};
+    data.map( col => {
+        const pointList = col.pointList;
+        const sessionId = col.pointList[0].sessionId;
+        const colType = col.type
+        
+        if (!sessions[sessionId]) {
+            sessions[sessionId] = {
+                'NEGATIVE': [],
+                'POSITIVE': [],
+            } 
+            sessions[sessionId][colType].push(pointList)
+
+            
+        } else {
+            console.log('Pusing', pointList, 'into', sessionId, colType)
+            sessions[sessionId][colType].push(pointList)
+        }
+
+    })
+    console.log('Returning', sessions)
+    return sessions
+    
+}
+
+function makeSessionsList() {
+    getRetroListData(makeObjectsOfSessions)
+}
+
+
+
+function initInputs(e) {
     $('.col-button-add').click(e => {
+        $(e.target).parent().find('.input-wrapper').toggleClass('expanded');
+    })
+
+    $('#newSession').click(e=>{
+        console.log('click')
         $(e.target).parent().find('.input-wrapper').toggleClass('expanded');
     })
 }
@@ -338,9 +389,11 @@ function Init() {
     console.log('Init RetroBoard')
     initFirebase();
     initSortingButtons();
-    initAddButtons();
+    initInputs();
     initLikeButton();
     initDarkMode();
     updateAllEntries();
+
+    makeSessionsList();
 
 }

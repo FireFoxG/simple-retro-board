@@ -15,11 +15,15 @@ public class Point {
     @JsonProperty
     private String message;
 
+    @JsonProperty
+    private String sessionId;
+
     private List<Vote> votes = new ArrayList<>();
 
-    public Point(Long id, String message) {
+    public Point(Long id, String message, String sessionId) {
         this.id = id;
         this.message = message;
+        this.sessionId = sessionId;
     }
 
     public Long getId() {
