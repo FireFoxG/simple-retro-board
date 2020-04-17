@@ -14,8 +14,8 @@ Things to-do:
 
  ```
  npm i
- mvn clean install
- npm run-script start
+ npm run-script build
+ npm start
  ```
  
  Server should be running, hopefully!

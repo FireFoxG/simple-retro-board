@@ -77,11 +77,9 @@ html {
                 }
 
                 input {
-                    .neumorph();
+                    .neumorph-inside();
 
-                    &:active {
-                        .neumorph();
-                    }
+                   
                 }
             }
 
@@ -425,7 +423,7 @@ main {
     width: 100%;
     margin: 0 auto;
     height: 100%;
-    padding: 2rem 0rem;
+    padding: 0;
     // .neumorph-inside();
 
     .board {
@@ -436,8 +434,8 @@ main {
         .col {
             max-width: 50%;
             width: 100%;
-            padding: 0 2rem;
-            margin: 1rem;
+            // padding: 0 2rem;
+            margin-right: 1rem;
             // .neumorph-inside();
 
 
@@ -614,13 +612,16 @@ main {
 
 .session-selection-site {
     h2 {
-        margin-top: 44px;
+        // margin-top: 44px;
         font-weight: normal;
     }
 
     ul {
+        display: flex;
+        flex-direction: row;
         button {
             padding: 1rem 2rem;
+            margin: 0 24px;
             .neumorph();
         }
     }

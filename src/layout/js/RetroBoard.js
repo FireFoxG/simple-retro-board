@@ -126,14 +126,17 @@ function initDarkMode() {
 }
 
 
-function addNewMessage(colId, message, type) {
-    console.log('Recieved', e)
+function addNewMessage(sessionId, message, type) {
+    console.log('Recieved', message)
 
-    $.ajax(QUERY_URL + `/retro/add?groupId=${colId}&message=${'message'}&type=${type}`, {
+    $.ajax(QUERY_URL + `/retro/add?message=${message}&type=${type}&sessionId=${sessionId}`, {
         type: 'POST',
         timeout: 1000,
     }).done((data) => {
-        console.log('ADDED NEW MESSAGE TO', type, ':', data)
+        console.log('ADDED NEW MESSAGE TO', type, ':', data);
+
+
+        redirectTo('board', renderParticularSession, sessionId)
 
 
     }).fail((err) => {
@@ -172,6 +175,13 @@ function initSortingButtons() {
     $('#sortVotes').click(e => {
         getRetroListData(sortEntries, 'sortVotes');
     })
+
+}
+
+function switchSession(sessionId) {
+    localStorage.setItem('CURRENT_RETRO_SESSION', sessionId);
+    CURRENT_RETRO_SESSION = sessionId;
+    redirectTo('board', renderParticularSession, sessionId);
 
 }
 
@@ -278,11 +288,14 @@ function renderRetroList(data) {
     $('.col-glad').find('ul li').remove();
     $('.col-sad').find('ul li').remove();
 
-console.log('GOT DATA', data)
-
+    if (!data.POSITIVE) {
+        console.error('error')
+        return false
+    }
     let GLAD = data.POSITIVE;
     let SAD = data.NEGATIVE;
 
+    $('#sessionName').text('Current session: ' + localStorage.getItem('CURRENT_RETRO_SESSION') );
 
 
     GLAD.pointList.map(e => {
@@ -397,6 +410,9 @@ function hide($el) {
  */
 function redirectTo(siteName, callback, callbackParams) {
     
+    $("#sessionName").text(' ');
+    $('.col .expanded').removeClass('expanded');
+
     hide($('.site'));
     show($('.'+siteName));
     callback(callbackParams);
@@ -407,22 +423,20 @@ function redirectTo(siteName, callback, callbackParams) {
 function renderSessionsToSessionPage(sessions) {
     $('.session-list').html('')
     for (session in sessions) {
-        $('.session-list').append('<button class="session-button">'+ session.toString() +'</button>').click( e => {
-            let sessionId = $(e.target).text();
-            console.log('Current retro:', sessionId)
-            CURRENT_RETRO_SESSION = sessionId;
-            localStorage.setItem('CURRENT_RETRO_SESSION', sessionId)
-            
-
-            redirectTo('board', renderParticularSession, sessionId);
-
-            // Render new session from here
-
-
-        })
-
-
+        $('.session-list').append('<button class="session-button">'+ session.toString() +'</button>')
     }
+    $('.session-list button.session-button').click( e => {
+        let sessionId = $(e.target).text();
+
+        CURRENT_RETRO_SESSION = sessionId;
+        localStorage.setItem('CURRENT_RETRO_SESSION', sessionId)
+    
+
+        redirectTo('board', renderParticularSession, sessionId);
+
+
+
+    })
 
   
 }
@@ -433,6 +447,7 @@ function makeSessionsList() {
 
 function newSession(sessionId) {
     console.log('New session:', sessionId)
+
 
 
 }
@@ -446,11 +461,16 @@ function initInputs(e) {
         $(e.target).parent().find('.input-wrapper').toggleClass('expanded');
     })
 
-    $('.depth-input .fas.fa-share').click(e => {
-        
-    })
+    $('.submit-new-message').click(e => {
+        let message = $(e.target).parent().find('textarea').val();
+        let colType = $(e.target).attr('for');
+        console.log('Submitting new message:', message ,'for', $(e.target).attr('for')) // 'sad' or 'glad'
 
-    console.log($("#input-session-name").parent().find('.fa-share'))
+        let finalColType = colType == 'sad' ? 'NEGATIVE' : 'POSITIVE';
+        addNewMessage(localStorage.getItem('CURRENT_RETRO_SESSION'), message, finalColType)
+
+        $(e.target).parent().find('textarea').val('');
+    })
 
     $("#input-session-name").parent().find('.fa-share').click( e => {
         e.preventDefault;
@@ -458,8 +478,6 @@ function initInputs(e) {
         newSession(sessionId)
         $(e.target).parent().find('input').val('')
     })
-
-
 
     $("#input-session-name").parent().on('submit', e => {
         e.preventDefault;
@@ -470,15 +488,17 @@ function initInputs(e) {
 
     $("#viewAllSessions").click(e=> {
         redirectTo('session-selection-site', makeSessionsList, null);
+        localStorage.setItem('CURRENT_RETRO_SESSION', '');
+        CURRENT_RETRO_SESSION = '';
     })
     
-    $('#sessionName').text('Current session: '+localStorage.getItem('CURRENT_RETRO_SESSION'));
+    $('#sessionName').text('Current session: ' + localStorage.getItem('CURRENT_RETRO_SESSION') );
    
 
 }
 
 
-
+// SESSION NAME
 
 function Init() {
 
@@ -489,6 +509,8 @@ function Init() {
     initSortingButtons();
     initInputs();
     initDarkMode();
+    $('#sessionName').text('Current session: ' + localStorage.getItem('CURRENT_RETRO_SESSION') );
+
     // updateAllEntries();
 
     let current = localStorage.getItem('CURRENT_RETRO_SESSION');

@@ -29,15 +29,25 @@ public class RetroBoardApplication {
 
 	public static void main(String[] args) {
 
-		groupOfPointsList.addAll(Arrays.asList(
+		groupOfPointsList.addAll(
+			Arrays.asList(
 			new GroupOfPoints(1L, GroupType.POSITIVE, Arrays.asList(
 				new Point(1L,"positive point 1", "retro1"), 
 				new Point(2L, "positive point 2",  "retro1")), "retro1"
 			),
-			new GroupOfPoints(3L, GroupType.NEGATIVE, Arrays.asList(
+			new GroupOfPoints(2L, GroupType.NEGATIVE, Arrays.asList(
 				new Point(3L,"Negative point 1",  "retro1"), 
-				new Point(4L,"Negative point 2",  "retro1")), "retro1"
-				)
+				new Point(4L,"Negative point 2",  "retro1")), "retro1"),
+			
+				new GroupOfPoints(3L, GroupType.POSITIVE, Arrays.asList(
+				new Point(5L,"New chair",  "testretro2"), 
+				new Point(6L,"Nice weather",  "testretro2")), "testretro2"),
+				new GroupOfPoints(4L, GroupType.NEGATIVE, Arrays.asList(
+				new Point(7L,"sold my soul to satan",  "testretro2"), 
+				new Point(8L,"not even mad",  "testretro2")), "testretro2")
+				
+				
+				
 				)
 				);
 

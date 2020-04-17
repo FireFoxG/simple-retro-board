@@ -30,15 +30,17 @@ public class RetroBoardRequestController {
     Point add(@RequestParam(required = false) Long groupId, @RequestParam String message, @RequestParam String type, @RequestParam String sessionId) {
 
         //TODO move this logic to DAO
-        if(groupId != null) {
-            Optional<GroupOfPoints> first = groupOfPointsList.stream().filter(groupOfPoints -> groupOfPoints.getId().equals(groupId)).findFirst();
+        if(sessionId != null) {
+            System.out.println("Our SESSION ID is present" + sessionId);
+            Optional<GroupOfPoints> first = groupOfPointsList.stream().filter(groupOfPoints -> groupOfPoints.getSessionId().equals(sessionId)).findFirst();
+            
             if(first.isPresent()) {
                 GroupOfPoints groupOfPoints = first.get();
                 Point point = new Point(random.nextLong(), message, sessionId);
                 groupOfPoints.addPoint(point);
                 return point;
             } else {
-                throw new IllegalArgumentException("could not find group by provided ID");
+                throw new IllegalArgumentException("could not find group by provided ID or Session ID");
             }
         } else {
             GroupOfPoints groupOfPoints = new GroupOfPoints(random.nextLong(), GroupType.fromString(type));
@@ -52,8 +54,7 @@ public class RetroBoardRequestController {
     @RequestMapping(path = "/list",
             method = RequestMethod.GET,
             produces = "application/json")
-    List<GroupOfPoints> list(@RequestParam(required = false) String type, @RequestParam(required = false) String sessionId) {
-        System.out.println("DEBUGGER:" + groupOfPointsList);
+            List<GroupOfPoints> list(@RequestParam(required = false) String type, @RequestParam(required = false) String sessionId) {
 
         if(type != null) {
             GroupType groupType = GroupType.fromString(type);
@@ -65,9 +66,11 @@ public class RetroBoardRequestController {
             }
         }
         if(sessionId != null) {
-            //throw error
-            System.out.println("DEBUGGER:" + sessionId);
-            return groupOfPointsList.stream().filter(groupOfPoints -> groupOfPoints.getSessionId().equals(sessionId)).collect(Collectors.toList());
+            try {
+                return groupOfPointsList.stream().filter(groupOfPoints -> groupOfPoints.getSessionId().equals(sessionId)).collect(Collectors.toList());
+            } catch (NullPointerException err) {
+                System.out.println(err);
+            }
         }
         
         return groupOfPointsList;

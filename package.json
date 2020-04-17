@@ -5,7 +5,8 @@
   "main": "core.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "java -jar .\\target\\retroboard-0.0.1-SNAPSHOT.jar"
+    "start": "java -jar .\\target\\retroboard-0.0.1-SNAPSHOT.jar",
+    "build": "mvn clean install"
   },
   "repository": {
     "type": "git",
