@@ -30,11 +30,12 @@ public class RetroBoardRequestController {
     Point add(@RequestParam(required = false) Long groupId, @RequestParam String message, @RequestParam String type, @RequestParam String sessionId) {
 
         //TODO move this logic to DAO
+
+        // Only add items to certain column type (pos, neg)
         if(sessionId != null) {
-            System.out.println("Our SESSION ID is present" + sessionId);
-            Optional<GroupOfPoints> first = groupOfPointsList.stream().filter(groupOfPoints -> groupOfPoints.getSessionId().equals(sessionId)).findFirst();
+            Optional<GroupOfPoints> first = groupOfPointsList.stream().filter(groupOfPoints -> groupOfPoints.getSessionId().equals(sessionId) && groupOfPoints.getType().toString().toUpperCase().equals(type.toUpperCase())).findFirst();
             
-            if(first.isPresent()) {
+            if (first.isPresent()) {
                 GroupOfPoints groupOfPoints = first.get();
                 Point point = new Point(random.nextLong(), message, sessionId);
                 groupOfPoints.addPoint(point);
